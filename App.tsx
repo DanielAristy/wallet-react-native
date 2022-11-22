@@ -1,10 +1,10 @@
 import React from 'react';
-
-import WelcomeScreen from './src/screens/WelcomeScreen';
-import { Styles } from './src/screens/styles/Styles';
+import LoginScreen from './src/screens/LoginScreen';
 
 const App = () => {
-  return <WelcomeScreen size={130} textStyle={Styles.textWelcome} />;
+  return (
+    //<WelcomeScreen size={130} textStyle={Styles.textWelcome} />
+    <LoginScreen />
+  );
 };
-
 export default App;
