@@ -4,7 +4,7 @@ import { Text, View } from 'react-native';
 const LoansScreen = () => {
   return (
     <View>
-      <Text>AccountScreen</Text>
+      <Text>LoansScreen</Text>
     </View>
   );
 };
