@@ -51,6 +51,7 @@ export const Styles = StyleSheet.create({
     borderColor: '#D3D3D3',
     alignItems: 'center',
     justifyContent: 'space-around',
+    flexDirection: 'row',
   },
 
   text: {

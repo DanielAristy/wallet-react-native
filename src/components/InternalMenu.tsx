@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
   },
   containerButton: {
     flexDirection: 'row',
+    justifyContent: 'space-evenly',
     marginLeft: 5,
     padding: 10,
     marginTop: 15,
