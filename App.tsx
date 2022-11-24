@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { DrawerNavigation } from './src/components/DrawerNavigation';
 import 'react-native-gesture-handler';
+import DrawerNavigation from './src/components/DrawerNavigation';
 
 const App = () => {
   return (

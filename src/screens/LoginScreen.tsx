@@ -3,13 +3,15 @@ import { View, Text, TextInput } from 'react-native';
 import Logo from '../components/Logo';
 import Button from '../components/Button';
 import { Styles } from './styles/Styles';
+import { DrawerContentComponentProps } from '@react-navigation/drawer';
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }: DrawerContentComponentProps) => {
   const [user, userState] = useState('');
   console.log(user);
 
   const handleLogin = () => {
     console.log('Login con Usuario');
+    navigation.navigate('TabNavigation');
   };
 
   const handleGoogle = () => {

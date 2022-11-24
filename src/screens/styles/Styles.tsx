@@ -19,8 +19,6 @@ export const Styles = StyleSheet.create({
   containerLogin: {
     flex: 1,
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'red',
   },
   input: {
     height: 40,
@@ -41,6 +39,7 @@ export const Styles = StyleSheet.create({
     backgroundColor: 'blue',
     borderRadius: 5,
     alignItems: 'center',
+    marginTop: 20,
   },
   buttonWhite: {
     height: 40,

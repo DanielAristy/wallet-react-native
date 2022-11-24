@@ -1,33 +1,39 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { Pantalla1Screen } from '../screens/Pantalla1Screen';
-import { Pantalla2Screen } from '../screens/Pantalla2Screen';
+import { ChangePasswordScreen } from '../screens/ChangePasswordScreen';
+import { SettingThemeApp } from '../screens/SettingThemeAppScreen';
 import { TabNavigation } from './TabNavigation';
 import InternalMenu from './InternalMenu';
+import LoginScreen from '../screens/LoginScreen';
+import { MyDrawerContentProps } from '../screens/interfaces/MyDrawerContentProps';
 
 const Drawer = createDrawerNavigator();
 
-export const DrawerNavigation = () => {
+const DrawerNavigation = () => {
   return (
     <Drawer.Navigator
-      //screenOptions={{ headerShown: false }}
+      screenOptions={{ title: 'Wallet' }}
+      // screenOptions={{ headerShown: false }}
       drawerContent={props => <InternalMenu {...props} />}
-      initialRouteName="TabNavigation">
+      initialRouteName="Login">
       <Drawer.Screen
-        name="Pantalla1Screen"
-        options={{ drawerLabel: 'Cambiar Contraseña' }}
-        component={props => <Pantalla1Screen {...props} />}
-      />
+        name="ChangePassword"
+        options={{ drawerLabel: 'Cambiar Contraseña' }}>
+        {(props: any) => <ChangePasswordScreen {...props} />}
+      </Drawer.Screen>
       <Drawer.Screen
-        name="Pantalla2Screen"
-        options={{ drawerLabel: 'Cambiar tema del App' }}
-        component={props => <Pantalla2Screen {...props} />}
-      />
-      <Drawer.Screen
-        name="TabNavigation"
-        options={{ drawerLabel: 'Cerrar Sesion' }}
-        component={props => <TabNavigation {...props} />}
-      />
+        name="SettingThemeApp"
+        options={{ drawerLabel: 'Cambiar tema del App' }}>
+        {(props: any) => <SettingThemeApp {...props} />}
+      </Drawer.Screen>
+      <Drawer.Screen name="Login" options={{ drawerLabel: 'Tabs' }}>
+        {(props: any) => <LoginScreen {...props} />}
+      </Drawer.Screen>
+      <Drawer.Screen name="TabNavigation" options={{ drawerLabel: 'Tabs' }}>
+        {() => <TabNavigation />}
+      </Drawer.Screen>
     </Drawer.Navigator>
   );
 };
+
+export default DrawerNavigation;

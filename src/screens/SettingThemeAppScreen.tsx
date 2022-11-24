@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
-import { MyDrawerContentProps } from './interfaces/MyDrawerContentProps';
+import { DrawerContentComponentProps } from '@react-navigation/drawer';
 
-export const Pantalla2Screen = ({ navigation }: MyDrawerContentProps) => {
+export const SettingThemeApp = ({ navigation }: DrawerContentComponentProps) => {
   return (
     <View>
-      <Text>Pantalla2Screen</Text>
+      <Text>Configuracion de Tema de App</Text>
       <Button
         title="Ir Pantalla 1"
         onPress={() => navigation.navigate('TabNavigation')}
