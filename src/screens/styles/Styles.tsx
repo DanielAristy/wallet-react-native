@@ -19,6 +19,7 @@ export const Styles = StyleSheet.create({
   containerLogin: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: '#fff',
   },
   input: {
     height: 40,

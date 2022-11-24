@@ -1,11 +1,10 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { ChangePasswordScreen } from '../screens/ChangePasswordScreen';
-import { SettingThemeApp } from '../screens/SettingThemeAppScreen';
 import { TabNavigation } from './TabNavigation';
 import InternalMenu from './InternalMenu';
+import { ChangePasswordScreen } from '../screens/drawers/ChangePasswordScreen';
 import LoginScreen from '../screens/LoginScreen';
-import { MyDrawerContentProps } from '../screens/interfaces/MyDrawerContentProps';
+import { SettingThemeApp } from '../screens/drawers/SettingThemeAppScreen';
 
 const Drawer = createDrawerNavigator();
 
