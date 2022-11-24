@@ -21,8 +21,19 @@ const DrawerNavigation = () => {
       drawerContent={props => <InternalMenu {...props} />}
       initialRouteName="Login">
       <Drawer.Screen
+        name="Login"
+        options={{
+          drawerLabel: 'Tabs',
+          headerShown: false,
+          swipeEnabled: false,
+        }}>
+        {(props: any) => <LoginScreen {...props} />}
+      </Drawer.Screen>
+      <Drawer.Screen
         name="ChangePassword"
-        options={{ drawerLabel: 'Cambiar Contraseña' }}>
+        options={{
+          drawerLabel: 'Cambiar Contraseña',
+        }}>
         {(props: any) => <ChangePasswordScreen {...props} />}
       </Drawer.Screen>
       <Drawer.Screen
@@ -30,10 +41,7 @@ const DrawerNavigation = () => {
         options={{ drawerLabel: 'Cambiar tema del App' }}>
         {(props: any) => <SettingThemeApp {...props} />}
       </Drawer.Screen>
-      <Drawer.Screen name="Login" options={{ drawerLabel: 'Tabs' }}>
-        {(props: any) => <LoginScreen {...props} />}
-      </Drawer.Screen>
-      <Drawer.Screen name="TabNavigation" options={{ drawerLabel: 'Tabs' }}>
+      <Drawer.Screen name="TabNavigation" options={{ drawerLabel: 'Tabs', unmountOnBlur: true  }}>
         {() => <TabNavigation />}
       </Drawer.Screen>
     </Drawer.Navigator>

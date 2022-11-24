@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 import BalanceItem from '../../components/BalanceItem';
@@ -101,19 +101,17 @@ const AccountScreen = () => {
         style={{
           height: '70%',
         }}>
-        <ScrollView>
-          <FlatList
-            data={list}
-            renderItem={({ item }) => (
-              <BalanceItem
-                nameIcon={item.nameIcon}
-                detail={item.detail}
-                date={item.date}
-                value={item.value}
-              />
-            )}
-          />
-        </ScrollView>
+        <FlatList
+          data={list}
+          renderItem={({ item }) => (
+            <BalanceItem
+              nameIcon={item.nameIcon}
+              detail={item.detail}
+              date={item.date}
+              value={item.value}
+            />
+          )}
+        />
       </View>
     </View>
   );

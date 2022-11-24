@@ -16,7 +16,7 @@ export const TabNavigation = () => {
         tabBarStyle: { backgroundColor: 'blue' },
       }}>
       <Tab.Screen
-        name="My App"
+        name="Home"
         component={AccountScreen}
         options={{
           tabBarLabel: 'Account',
