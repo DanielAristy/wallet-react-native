@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
-import BalanceItem from '../../components/BalanceItem';
+import BalanceItem from '../components/BalanceItem';
 
 const AccountScreen = () => {
   const [balance, setBalance] = useState('642.467.600');

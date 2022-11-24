@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import Logo from '../components/Logo';
 import Button from '../components/Button';
-import { Styles } from './styles/Styles';
 import { DrawerContentComponentProps } from '@react-navigation/drawer';
+import { Styles } from '../styles/Styles';
 
 const LoginScreen = ({ navigation }: DrawerContentComponentProps) => {
   const [user, userState] = useState('');

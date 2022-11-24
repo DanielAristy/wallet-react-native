@@ -1,10 +1,10 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { TabNavigation } from './TabNavigation';
-import InternalMenu from './InternalMenu';
-import { ChangePasswordScreen } from '../screens/drawers/ChangePasswordScreen';
+import InternalMenu from '../components/InternalMenu';
+import { ChangePasswordScreen } from '../screens/ChangePasswordScreen';
 import LoginScreen from '../screens/LoginScreen';
-import { SettingThemeApp } from '../screens/drawers/SettingThemeAppScreen';
+import { SettingThemeApp } from '../screens/SettingThemeAppScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -41,7 +41,9 @@ const DrawerNavigation = () => {
         options={{ drawerLabel: 'Cambiar tema del App' }}>
         {(props: any) => <SettingThemeApp {...props} />}
       </Drawer.Screen>
-      <Drawer.Screen name="TabNavigation" options={{ drawerLabel: 'Tabs', unmountOnBlur: true  }}>
+      <Drawer.Screen
+        name="TabNavigation"
+        options={{ drawerLabel: 'Tabs', unmountOnBlur: true }}>
         {() => <TabNavigation />}
       </Drawer.Screen>
     </Drawer.Navigator>

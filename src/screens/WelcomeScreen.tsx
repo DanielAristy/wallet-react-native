@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import Avatar from '../components/Avatar';
-import { Styles } from './styles/Styles';
+import { Styles } from '../styles/Styles';
 
 interface Props {
   size?: number;

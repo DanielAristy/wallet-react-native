@@ -1,8 +1,8 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import AccountScreen from '../screens/tabs/AccountScreen';
-import LoansScreen from '../screens/tabs/LoansScreen';
-import PaymentScreen from '../screens/tabs/PaymentScreen';
+import AccountScreen from '../screens/AccountScreen';
+import LoansScreen from '../screens/LoansScreen';
+import PaymentScreen from '../screens/PaymentScreen';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Tab = createBottomTabNavigator();
