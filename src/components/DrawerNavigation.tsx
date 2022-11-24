@@ -11,8 +11,13 @@ const Drawer = createDrawerNavigator();
 const DrawerNavigation = () => {
   return (
     <Drawer.Navigator
-      screenOptions={{ title: 'Wallet' }}
-      // screenOptions={{ headerShown: false }}
+      screenOptions={{
+        title: 'Wallet',
+        headerTintColor: '#fff',
+        headerStyle: {
+          backgroundColor: 'blue',
+        },
+      }}
       drawerContent={props => <InternalMenu {...props} />}
       initialRouteName="Login">
       <Drawer.Screen

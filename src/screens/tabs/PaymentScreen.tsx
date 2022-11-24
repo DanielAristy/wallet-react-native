@@ -5,8 +5,6 @@ const PaymentScreen = () => {
   return (
     <View
       style={{
-        borderColor: 'red',
-        borderWidth: 1,
         flex: 1,
         backgroundColor: 'white',
       }}>
