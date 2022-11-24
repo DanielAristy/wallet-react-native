@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, Image } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface Props {
   onPress: () => void;
@@ -27,8 +28,8 @@ const Button = ({
   } else {
     return (
       <TouchableOpacity style={{ ...styleTouchable }} onPress={onPress}>
-        {url && <Image source={require('../assets/images/google.png')} />}
-        {!url && <Image source={require('../assets/images/appleIcon.png')} />}
+        {url && <Icon name="google" size={25} color={'#000'} />}
+        {!url && <Icon name="apple" size={25} color={'#000'} />}
         <Text style={{ ...styleText }}>{title}</Text>
       </TouchableOpacity>
     );

@@ -22,8 +22,39 @@ const LoginScreen = ({ navigation }: DrawerContentComponentProps) => {
   };
   return (
     <View style={Styles.containerLogin}>
-      <Logo size={80} marginTop={20} />
-      <Text>Material 2 UI</Text>
+      <Logo size={110} marginTop={100} />
+      <View style={{ flexDirection: 'row' }}>
+        <Text
+          style={{
+            color: '#000',
+            fontWeight: 'bold',
+            fontSize: 22,
+            letterSpacing: 2,
+            marginRight: 10,
+          }}>
+          MATERIAL
+        </Text>
+        <Text
+          style={{
+            fontWeight: 'bold',
+            fontSize: 22,
+            letterSpacing: 2,
+            marginRight: 10,
+            color: 'purple',
+          }}>
+          2
+        </Text>
+        <Text
+          style={{
+            color: '#000',
+            fontWeight: 'bold',
+            fontSize: 22,
+            letterSpacing: 2,
+            marginRight: 10,
+          }}>
+          UI
+        </Text>
+      </View>
       <Text style={Styles.textLogin}>Login or sign up for free</Text>
       <TextInput
         style={Styles.input}
@@ -40,19 +71,32 @@ const LoginScreen = ({ navigation }: DrawerContentComponentProps) => {
         login
         onPress={() => handleLogin()}
       />
-      <Button
-        styleTouchable={Styles.buttonWhite}
-        styleText={Styles.textBlack}
-        title={'Sign in with Google'}
-        url
-        onPress={() => handleGoogle()}
+      <View
+        style={{
+          width: 270,
+          padding: 8,
+          borderColor: '#D3D3D3',
+          borderBottomWidth: 1,
+          marginBottom: 20,
+        }}
       />
-      <Button
-        styleTouchable={Styles.buttonWhite}
-        styleText={Styles.textBlack}
-        title={'Sign in with Apple'}
-        onPress={() => handleApple()}
-      />
+      <View>
+        <Button
+          styleTouchable={Styles.buttonWhite}
+          styleText={Styles.textBlack}
+          title={'Sign in with Google'}
+          url
+          onPress={() => handleGoogle()}
+        />
+      </View>
+      <View style={{ marginTop: 10 }}>
+        <Button
+          styleTouchable={Styles.buttonWhite}
+          styleText={Styles.textBlack}
+          title={'Sign in with Apple'}
+          onPress={() => handleApple()}
+        />
+      </View>
     </View>
   );
 };

@@ -31,7 +31,7 @@ export const Styles = StyleSheet.create({
     marginTop: 80,
   },
   textLogin: {
-    marginTop: 20,
+    marginTop: 120,
     color: 'black',
   },
   buttonBlue: {
@@ -45,11 +45,12 @@ export const Styles = StyleSheet.create({
   buttonWhite: {
     height: 40,
     width: 300,
-    backgroundColor: '#E5E5E5',
+    backgroundColor: 'white',
     borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#D3D3D3',
     alignItems: 'center',
     justifyContent: 'space-around',
-    flexDirection: 'row', // Pone en fila el logo y el texto para los botones de login
   },
 
   text: {

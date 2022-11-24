@@ -11,35 +11,37 @@ const InternalMenu = ({ navigation }: DrawerContentComponentProps) => {
   return (
     <DrawerContentScrollView>
       <View style={styles.containerAvatar}>
-        <Avatar size={50} />
+        <Avatar
+          size={100}
+          url={
+            'https://lh3.googleusercontent.com/ogw/AOh-ky1gQ_jNZBwtZTNlcgslDWCLp5xzRWaldvWrPAIX=s32-c-mo'
+          }
+          validUrl
+          customStyles={{ borderRadius: 50, resizeMode: 'contain' }}
+        />
         <Text style={styles.containerAvatarText}>Daniel Aristizabal</Text>
       </View>
-      <View
-        style={{
-          padding: 5,
-          height: 410,
-        }}>
-        <TouchableOpacity onPress={() => navigation.navigate('ChangePassword')}>
-          <View style={styles.containerButton}>
-            <Icon name="cog-outline" size={25} />
-            <Text style={styles.containerButtonText}>Cambiar Contraseña</Text>
-          </View>
+      <View style={styles.containerToucheable}>
+        <TouchableOpacity
+          style={styles.containerButton}
+          onPress={() => navigation.navigate('ChangePassword')}>
+          <Icon name="cog-outline" size={25} />
+          <Text style={styles.containerButtonText}>Cambiar Contraseña</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          style={styles.containerButton}
           onPress={() => navigation.navigate('SettingThemeApp')}>
-          <View style={styles.containerButton}>
-            <Icon name="bookmark" size={25} />
-            <Text style={styles.containerButtonText}>Cambiar tema del app</Text>
-          </View>
+          <Icon name="bookmark" size={25} />
+          <Text style={styles.containerButtonText}>Cambiar tema del app</Text>
         </TouchableOpacity>
         <View
           style={{ padding: 8, borderColor: '#D3D3D3', borderBottomWidth: 1 }}
         />
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-          <View style={styles.containerButton}>
-            <Icon name="close-thick" size={25} />
-            <Text style={styles.containerButtonText}>Cerrar Sesion</Text>
-          </View>
+        <TouchableOpacity
+          style={styles.containerButton}
+          onPress={() => navigation.navigate('Login')}>
+          <Icon name="close-thick" size={25} />
+          <Text style={styles.containerButtonText}>Cerrar Sesion</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.containerAvatarFooter}>
@@ -51,9 +53,9 @@ const InternalMenu = ({ navigation }: DrawerContentComponentProps) => {
 
 const styles = StyleSheet.create({
   containerAvatar: {
-    padding: 30,
-    alignItems: 'center',
     height: 150,
+    margin: 20,
+    alignItems: 'center',
   },
   containerAvatarText: {
     color: 'black',
@@ -61,9 +63,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     padding: 10,
   },
+  containerToucheable: {
+    marginTop: 20,
+    height: 300,
+  },
   containerButton: {
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
     marginLeft: 5,
     padding: 10,
     marginTop: 15,
@@ -71,7 +76,6 @@ const styles = StyleSheet.create({
   containerButtonText: {
     flex: 1,
     fontFamily: 'Roboto',
-    marginBottom: 0,
     marginLeft: 18,
     fontSize: 18,
     fontWeight: '600',
@@ -80,9 +84,10 @@ const styles = StyleSheet.create({
     letterSpacing: 0.7,
   },
   containerAvatarFooter: {
-    padding: 40,
+    height: 200,
+    margin: 20,
     alignItems: 'center',
-    height: 190,
+    justifyContent: 'flex-end',
   },
 });
 
