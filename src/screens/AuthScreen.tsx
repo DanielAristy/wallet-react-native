@@ -8,8 +8,10 @@ import { setLogin, setToken } from '../redux/slice/AuthSlice';
 import { MyStackScreenProps } from '../interfaces/MyStackScreenProps';
 
 const AuthScreen = ({ navigation }: MyStackScreenProps) => {
-  const [user, userState] = useState('');
+  const [user, setUser] = useState('');
+  const [password, setPassword] = useState('');
   console.log(user);
+  const [confirm, setConfirm] = useState(false);
 
   const dispatch = useDispatch();
   const { isAuth } = useSelector((state: any) => state.auth);
@@ -18,11 +20,18 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
     if (isAuth) {
       navigation.navigate('TabNavigation');
     }
+    console.log(confirm);
   }, [isAuth, navigation]);
 
   const handleLogin = () => {
     dispatch(setToken('token123456'));
     dispatch(setLogin());
+    setUser('');
+    setPassword('');
+    setConfirm(false);
+  };
+  const handleContinue = () => {
+    setConfirm(true);
   };
 
   const handleGoogle = () => {
@@ -67,21 +76,46 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
         </Text>
       </View>
       <Text style={Styles.textLogin}>Login or sign up for free</Text>
-      <TextInput
-        style={Styles.input}
-        underlineColorAndroid="transparent"
-        placeholder={'Email or Username'}
-        onChangeText={userState}
-        value={user}
-        keyboardType="email-address"
-      />
-      <Button
-        styleTouchable={Styles.buttonBlue}
-        styleText={Styles.text}
-        title={'Login'}
-        login
-        onPress={handleLogin}
-      />
+      <View>
+        {confirm ? (
+          <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <TextInput
+              style={Styles.input}
+              underlineColorAndroid="transparent"
+              placeholder={'Password'}
+              onChangeText={setPassword}
+              value={password}
+              secureTextEntry={true}
+              keyboardType="visible-password"
+            />
+            <Button
+              styleTouchable={Styles.buttonBlue}
+              styleText={Styles.text}
+              title={'Login'}
+              login
+              onPress={handleLogin}
+            />
+          </View>
+        ) : (
+          <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <TextInput
+              style={Styles.input}
+              underlineColorAndroid="transparent"
+              placeholder={'Email or Username'}
+              onChangeText={setUser}
+              value={user}
+              keyboardType="email-address"
+            />
+            <Button
+              styleTouchable={Styles.buttonBlue}
+              styleText={Styles.text}
+              title={'Continue'}
+              login
+              onPress={handleContinue}
+            />
+          </View>
+        )}
+      </View>
       <View
         style={{
           width: 270,
