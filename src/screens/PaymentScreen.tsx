@@ -1,7 +1,24 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, BackHandler, Alert } from 'react-native';
+import { MyStackScreenProps } from '../interfaces/MyStackScreenProps';
 
-const PaymentScreen = () => {
+const PaymentScreen = ({ navigation }: MyStackScreenProps) => {
+  useEffect(() => {
+    const backAction = () => {
+      if (navigation.isFocused()) {
+        navigation.navigate('TabNavigation');
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+    return () => backHandler.remove();
+  }, [navigation]);
   return (
     <View
       style={{

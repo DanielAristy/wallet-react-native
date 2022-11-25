@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
-import { Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, View, BackHandler } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-
 import BalanceItem from '../components/BalanceItem';
+import { MyStackScreenProps } from '../interfaces/MyStackScreenProps';
 
-const AccountScreen = () => {
+const AccountScreen = ({ navigation }: MyStackScreenProps) => {
+  useEffect(() => {
+    const backAction = () => {
+      if (navigation.isFocused()) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+    return () => backHandler.remove();
+  }, [navigation]);
+
   const [balance, setBalance] = useState('642.467.600');
   const list = [
     {

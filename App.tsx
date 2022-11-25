@@ -1,16 +1,18 @@
+import 'react-native-gesture-handler';
+
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import 'react-native-gesture-handler';
 import DrawerNavigation from './src/navigation/DrawerNavigation';
-import { DrawerContentComponentProps } from '@react-navigation/drawer';
+import { Provider } from 'react-redux';
+import { ConfigStore } from './src/redux/storage/ConfigStore';
 
-const App = (props: DrawerContentComponentProps) => {
+const App = () => {
   return (
-    //<WelcomeScreen size={130} textStyle={Styles.textWelcome} />
-    //<LoginScreen {...props} />
-    <NavigationContainer>
-      <DrawerNavigation />
-    </NavigationContainer>
+    <Provider store={ConfigStore}>
+      <NavigationContainer>
+        <DrawerNavigation />
+      </NavigationContainer>
+    </Provider>
   );
 };
 export default App;

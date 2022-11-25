@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import Logo from '../components/Logo';
 import Button from '../components/Button';
-import { DrawerContentComponentProps } from '@react-navigation/drawer';
 import { Styles } from '../styles/Styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLogin, setToken } from '../redux/slice/AuthSlice';
+import { MyStackScreenProps } from '../interfaces/MyStackScreenProps';
 
-const LoginScreen = ({ navigation }: DrawerContentComponentProps) => {
+const AuthScreen = ({ navigation }: MyStackScreenProps) => {
   const [user, userState] = useState('');
   console.log(user);
 
+  const dispatch = useDispatch();
+  const { isAuth } = useSelector((state: any) => state.auth);
+
+  useEffect(() => {
+    if (isAuth) {
+      navigation.navigate('TabNavigation');
+    }
+  }, [isAuth, navigation]);
+
   const handleLogin = () => {
-    console.log('Login con Usuario');
-    navigation.navigate('TabNavigation');
+    dispatch(setToken('token123456'));
+    dispatch(setLogin());
   };
 
   const handleGoogle = () => {
@@ -69,7 +80,7 @@ const LoginScreen = ({ navigation }: DrawerContentComponentProps) => {
         styleText={Styles.text}
         title={'Login'}
         login
-        onPress={() => handleLogin()}
+        onPress={handleLogin}
       />
       <View
         style={{
@@ -101,4 +112,4 @@ const LoginScreen = ({ navigation }: DrawerContentComponentProps) => {
   );
 };
 
-export default LoginScreen;
+export default AuthScreen;

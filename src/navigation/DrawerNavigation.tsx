@@ -3,8 +3,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { TabNavigation } from './TabNavigation';
 import InternalMenu from '../components/InternalMenu';
 import { ChangePasswordScreen } from '../screens/ChangePasswordScreen';
-import LoginScreen from '../screens/LoginScreen';
 import { SettingThemeApp } from '../screens/SettingThemeAppScreen';
+import AuthScreen from '../screens/AuthScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -19,33 +19,33 @@ const DrawerNavigation = () => {
         },
       }}
       drawerContent={props => <InternalMenu {...props} />}
-      initialRouteName="Login">
+      initialRouteName="Auth">
       <Drawer.Screen
-        name="Login"
+        name="Auth"
         options={{
           drawerLabel: 'Tabs',
           headerShown: false,
           swipeEnabled: false,
-        }}>
-        {(props: any) => <LoginScreen {...props} />}
-      </Drawer.Screen>
+        }}
+        component={AuthScreen}
+      />
       <Drawer.Screen
         name="ChangePassword"
         options={{
           drawerLabel: 'Cambiar Contraseña',
-        }}>
-        {(props: any) => <ChangePasswordScreen {...props} />}
-      </Drawer.Screen>
+        }}
+        component={ChangePasswordScreen}
+      />
       <Drawer.Screen
         name="SettingThemeApp"
-        options={{ drawerLabel: 'Cambiar tema del App' }}>
-        {(props: any) => <SettingThemeApp {...props} />}
-      </Drawer.Screen>
+        options={{ drawerLabel: 'Cambiar tema del App' }}
+        component={SettingThemeApp}
+      />
       <Drawer.Screen
         name="TabNavigation"
-        options={{ drawerLabel: 'Tabs', unmountOnBlur: true }}>
-        {() => <TabNavigation />}
-      </Drawer.Screen>
+        options={{ drawerLabel: 'Tabs', unmountOnBlur: true }}
+        component={TabNavigation}
+      />
     </Drawer.Navigator>
   );
 };

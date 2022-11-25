@@ -6,8 +6,15 @@ import {
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Avatar from './Avatar';
+import { useDispatch } from 'react-redux';
+import { setLogout } from '../redux/slice/AuthSlice';
 
 const InternalMenu = ({ navigation }: DrawerContentComponentProps) => {
+  const dispatch = useDispatch();
+  const logout = () => {
+    dispatch(setLogout());
+    navigation.navigate('Auth');
+  };
   return (
     <DrawerContentScrollView>
       <View style={styles.containerAvatar}>
@@ -37,9 +44,7 @@ const InternalMenu = ({ navigation }: DrawerContentComponentProps) => {
         <View
           style={{ padding: 8, borderColor: '#D3D3D3', borderBottomWidth: 1 }}
         />
-        <TouchableOpacity
-          style={styles.containerButton}
-          onPress={() => navigation.navigate('Login')}>
+        <TouchableOpacity style={styles.containerButton} onPress={logout}>
           <Icon name="close-thick" size={25} />
           <Text style={styles.containerButtonText}>Cerrar Sesion</Text>
         </TouchableOpacity>
