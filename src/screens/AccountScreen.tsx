@@ -8,6 +8,7 @@ const AccountScreen = ({ navigation }: MyStackScreenProps) => {
   useEffect(() => {
     const backAction = () => {
       if (navigation.isFocused()) {
+        navigation.navigate('TabNavigation');
         return true;
       } else {
         return false;
