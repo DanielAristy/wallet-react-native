@@ -3,7 +3,7 @@ import { View, Text, TextInput } from 'react-native';
 import Logo from '../components/Logo';
 import Button from '../components/Button';
 import { Styles } from '../styles/Styles';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setLogin, setToken } from '../redux/slice/AuthSlice';
 import { MyStackScreenProps } from '../interfaces/MyStackScreenProps';
 import { AuthContext } from '../context/AuthContext';
@@ -15,7 +15,7 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
   const [confirm, setConfirm] = useState(false);
 
   const dispatch = useDispatch();
-  // const { isAuth } = useSelector((state: any) => state.auth);
+  const { isAuth } = useSelector((state: any) => state.auth);
 
   useEffect(() => {
     if (loggedIn) {
@@ -25,12 +25,12 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
     }
   }, [loggedIn]);
 
-  // useEffect(() => {
-  //   if (isAuth) {
-  //     navigation.navigate('TabNavigation');
-  //   }
-  //   console.log(confirm);
-  // }, [isAuth, navigation]);
+  useEffect(() => {
+    if (isAuth) {
+      navigation.navigate('TabNavigation');
+    }
+    console.log(confirm);
+  }, [isAuth, navigation]);
 
   const handleLogin = () => {
     dispatch(setToken('token123456'));
@@ -60,7 +60,7 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
       <Text style={Styles.authContainerTextLogin}>
         Login or sign up for free
       </Text>
-      <>
+      <View>
         {confirm ? (
           <View style={{ alignItems: 'center', justifyContent: 'center' }}>
             <TextInput
@@ -99,7 +99,7 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
             />
           </View>
         )}
-      </>
+      </View>
       <View
         style={{
           width: 270,

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import Button from '../components/Button';
 import { MyStackScreenProps } from '../interfaces/MyStackScreenProps';
 import { setLogout } from '../redux/slice/AuthSlice';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Styles } from '../styles/Styles';
 
 export const ChangePasswordScreen = ({ navigation }: MyStackScreenProps) => {
@@ -30,35 +31,55 @@ export const ChangePasswordScreen = ({ navigation }: MyStackScreenProps) => {
     dispatch(setLogout());
     navigation.navigate('Auth');
   };
+
+  const cancel = () => {
+    navigation.navigate('TabNavigation');
+  };
   return (
     <View style={Styles.changePasswordContainer}>
-      <TextInput
-        style={Styles.changePasswordTextInput}
-        placeholderTextColor="#000"
-        placeholder={'Current password'}
-        onChangeText={setPassword}
-        value={password}
-        secureTextEntry={true}
-        keyboardType="visible-password"
-      />
-      <TextInput
-        style={Styles.changePasswordTextInput}
-        placeholderTextColor="#000"
-        placeholder={'New password'}
-        onChangeText={setPassword}
-        value={password}
-        secureTextEntry={true}
-        keyboardType="visible-password"
-      />
-      <TextInput
-        style={Styles.changePasswordTextInput}
-        placeholderTextColor="#000"
-        placeholder={'Retype new Password'}
-        onChangeText={setPassword}
-        value={password}
-        secureTextEntry={true}
-        keyboardType="visible-password"
-      />
+      <View style={{ flexDirection: 'row' }}>
+        <View style={{ marginTop: 20 }}>
+          <Icon name="account-key" size={25} color={'#000'} />
+        </View>
+        <TextInput
+          style={Styles.changePasswordTextInput}
+          placeholderTextColor="#000"
+          placeholder={'Current password'}
+          onChangeText={setPassword}
+          value={password}
+          secureTextEntry={true}
+          keyboardType="visible-password"
+        />
+      </View>
+      <View style={{ flexDirection: 'row' }}>
+        <View style={{ marginTop: 20 }}>
+          <Icon name="account-lock" size={25} color={'#000'} />
+        </View>
+        <TextInput
+          style={Styles.changePasswordTextInput}
+          placeholderTextColor="#000"
+          placeholder={'New password'}
+          onChangeText={setPassword}
+          value={password}
+          secureTextEntry={true}
+          keyboardType="visible-password"
+        />
+      </View>
+      <View style={{ flexDirection: 'row' }}>
+        <View style={{ marginTop: 20 }}>
+          <Icon name="account-lock" size={25} color={'#000'} />
+        </View>
+        <TextInput
+          style={Styles.changePasswordTextInput}
+          placeholderTextColor="#000"
+          placeholder={'Retype new Password'}
+          onChangeText={setPassword}
+          value={password}
+          secureTextEntry={true}
+          keyboardType="visible-password"
+        />
+      </View>
+
       <Button
         styleTouchable={Styles.buttonBlue}
         styleText={Styles.text}
@@ -71,7 +92,7 @@ export const ChangePasswordScreen = ({ navigation }: MyStackScreenProps) => {
         styleText={{ color: '#000' }}
         title={'Cancelar'}
         login
-        onPress={changePassword}
+        onPress={cancel}
       />
     </View>
   );
