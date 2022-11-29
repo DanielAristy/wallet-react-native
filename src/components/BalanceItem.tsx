@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { StylesComponent as Styles } from './styles/StylesComponent';
 
 interface Props {
   nameIcon: string;
@@ -11,22 +11,16 @@ interface Props {
 }
 const BalanceItem = ({ nameIcon, detail, date, value }: Props) => {
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-evenly',
-        margin: 5,
-      }}>
+    <View style={Styles.containerMovement}>
       <View>
         <Icon name={nameIcon} size={30} color="#000" />
       </View>
       <View>
-        <Text style={{ color: '#000', fontSize: 20 }}>{detail}</Text>
-        <Text style={{ color: '#000', fontSize: 15 }}>{date}</Text>
+        <Text style={Styles.detailText}>{detail}</Text>
+        <Text style={Styles.dateText}>{date}</Text>
       </View>
       <View>
-        <Text style={{ color: 'red', fontSize: 20 }}>{`$ ${value}`}</Text>
+        <Text style={Styles.valueText}>{`$ ${value}`}</Text>
       </View>
     </View>
   );

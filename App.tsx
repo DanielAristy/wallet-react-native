@@ -5,13 +5,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import DrawerNavigation from './src/navigation/DrawerNavigation';
 import { Provider } from 'react-redux';
 import { ConfigStore } from './src/redux/storage/ConfigStore';
+import { AuthContextProvider } from './src/context/AuthContext';
 
 const App = () => {
   return (
     <Provider store={ConfigStore}>
-      <NavigationContainer>
-        <DrawerNavigation />
-      </NavigationContainer>
+      <AuthContextProvider>
+        <NavigationContainer>
+          <DrawerNavigation />
+        </NavigationContainer>
+      </AuthContextProvider>
     </Provider>
   );
 };

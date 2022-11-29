@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, BackHandler } from 'react-native';
+import { Text, View, BackHandler, StyleSheet } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import BalanceItem from '../components/BalanceItem';
+import { Styles } from '../styles/Styles';
 import { MyStackScreenProps } from '../interfaces/MyStackScreenProps';
 
 const AccountScreen = ({ navigation }: MyStackScreenProps) => {
@@ -87,37 +88,19 @@ const AccountScreen = ({ navigation }: MyStackScreenProps) => {
     },
   ];
   return (
-    <View
-      style={{
-        height: '100%',
-        backgroundColor: 'white',
-      }}>
-      <View
-        style={{
-          height: '30%',
-        }}>
-        <View
-          style={{
-            flex: 1,
-            width: '100%',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: 'blue',
-          }}>
+    <View style={Styles.accountScreenContainer}>
+      <View style={Styles.accountScreenContainerAccout}>
+        <View style={Styles.accountScreenContainerBalance}>
           <Text
-            style={{
-              color: '#fff',
-              fontSize: 50,
-            }}>{`$ ${balance}`}</Text>
-          <Text style={{ color: '#fff', marginTop: 5 }}>
+            style={
+              Styles.accountScreenContainerBalanceValue
+            }>{`$ ${balance}`}</Text>
+          <Text style={Styles.accountScreenContainerBalanceText}>
             Balance in your account
           </Text>
         </View>
       </View>
-      <View
-        style={{
-          height: '70%',
-        }}>
+      <View style={Styles.accountScreenContainerFlatList}>
         <FlatList
           data={list}
           renderItem={({ item }) => (

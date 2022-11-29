@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Image } from 'react-native';
+import { StylesComponent as Styles } from './styles/StylesComponent';
 
 interface Props {
   size?: number;
@@ -23,15 +24,8 @@ const Avatar = ({ size, customStyles, url, validUrl }: Props) => {
 };
 
 const avatarStyle = (size?: number, customStyles?: any) => {
-  return size ? { width: size, height: size, ...customStyles } : styles.avatar;
+  return size ? { width: size, height: size, ...customStyles } : Styles.avatar;
 };
 
-const styles = StyleSheet.create({
-  avatar: {
-    width: 144,
-    height: 144,
-    borderRadius: 50,
-  },
-});
 
 export default Avatar;

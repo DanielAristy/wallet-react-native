@@ -31,22 +31,9 @@ export const ChangePasswordScreen = ({ navigation }: MyStackScreenProps) => {
     navigation.navigate('Auth');
   };
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-      }}>
+    <View style={Styles.changePasswordContainer}>
       <TextInput
-        style={{
-          height: 40,
-          width: 300,
-          margin: 12,
-          backgroundColor: '#D3D3D3',
-          opacity: 0.5,
-          borderBottomWidth: 1,
-          padding: 10,
-        }}
+        style={Styles.changePasswordTextInput}
         placeholderTextColor="#000"
         placeholder={'Current password'}
         onChangeText={setPassword}
@@ -55,15 +42,7 @@ export const ChangePasswordScreen = ({ navigation }: MyStackScreenProps) => {
         keyboardType="visible-password"
       />
       <TextInput
-        style={{
-          height: 40,
-          width: 300,
-          margin: 12,
-          backgroundColor: '#D3D3D3',
-          opacity: 0.5,
-          borderBottomWidth: 1,
-          padding: 10,
-        }}
+        style={Styles.changePasswordTextInput}
         placeholderTextColor="#000"
         placeholder={'New password'}
         onChangeText={setPassword}
@@ -72,15 +51,7 @@ export const ChangePasswordScreen = ({ navigation }: MyStackScreenProps) => {
         keyboardType="visible-password"
       />
       <TextInput
-        style={{
-          height: 40,
-          width: 300,
-          margin: 12,
-          backgroundColor: '#D3D3D3',
-          opacity: 0.5,
-          borderBottomWidth: 1,
-          padding: 10,
-        }}
+        style={Styles.changePasswordTextInput}
         placeholderTextColor="#000"
         placeholder={'Retype new Password'}
         onChangeText={setPassword}
