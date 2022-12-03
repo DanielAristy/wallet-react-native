@@ -6,7 +6,7 @@ import { MyStackScreenProps } from '../interfaces/MyStackScreenProps';
 
 const WelcomeScreen = ({ navigation }: MyStackScreenProps) => {
   useEffect(() => {
-    setTimeout(() => navigation.navigate('Auth'), 1000);
+    setTimeout(() => navigation.navigate('Auth'), 1500);
   });
   return (
     <View style={Styles.container}>

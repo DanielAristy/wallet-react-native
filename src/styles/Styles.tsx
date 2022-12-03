@@ -108,9 +108,10 @@ export const Styles = StyleSheet.create({
   accountScreenContainerBalance: {
     flex: 1,
     width: '100%',
-    alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'blue',
+    borderBottomEndRadius: 150,
+    paddingLeft: 30,
   },
   accountScreenContainerBalanceValue: {
     color: '#fff',
