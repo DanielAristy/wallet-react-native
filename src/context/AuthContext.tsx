@@ -15,11 +15,12 @@ const AuthContextProvider = (props: any) => {
   const [userData, setUserData] = useState<{
     name: string;
     picture: string;
+    email: string;
   }>();
 
   const getUserData = async (id?: string) => {
     const idToken = id ? id : await SInfo.getItem('idToken', {});
-    const { name, picture, exp } = jwtDecode<any>(idToken);
+    const { name, picture, email, exp } = jwtDecode<any>(idToken);
 
     if (exp < Date.now() / 1000) {
       throw new Error('ID token expired!');
@@ -28,6 +29,7 @@ const AuthContextProvider = (props: any) => {
     return {
       name,
       picture,
+      email,
     };
   };
 

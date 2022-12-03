@@ -29,7 +29,6 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
     if (isAuth) {
       navigation.navigate('TabNavigation');
     }
-    console.log(confirm);
   }, [isAuth, navigation]);
 
   const handleLogin = () => {

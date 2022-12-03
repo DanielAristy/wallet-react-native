@@ -5,6 +5,7 @@ import InternalMenu from '../components/InternalMenu';
 import { ChangePasswordScreen } from '../screens/ChangePasswordScreen';
 import { SettingThemeApp } from '../screens/SettingThemeAppScreen';
 import AuthScreen from '../screens/AuthScreen';
+import WelcomeScreen from '../screens/WelcomeScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -19,7 +20,7 @@ const DrawerNavigation = () => {
         },
       }}
       drawerContent={props => <InternalMenu {...props} />}
-      initialRouteName="Auth">
+      initialRouteName="Welcome">
       <Drawer.Screen
         name="Auth"
         options={{
@@ -28,6 +29,15 @@ const DrawerNavigation = () => {
           swipeEnabled: false,
         }}
         component={AuthScreen}
+      />
+      <Drawer.Screen
+        name="Welcome"
+        options={{
+          drawerLabel: 'Tabs',
+          headerShown: false,
+          swipeEnabled: false,
+        }}
+        component={WelcomeScreen}
       />
       <Drawer.Screen
         name="ChangePassword"

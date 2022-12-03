@@ -4,8 +4,6 @@ export const Styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: 'red',
     alignItems: 'center',
     paddingTop: '80%',
   },
