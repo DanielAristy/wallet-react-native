@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, BackHandler, StyleSheet } from 'react-native';
+import { Text, View, BackHandler } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import BalanceItem from '../components/BalanceItem';
 import { Styles } from '../styles/Styles';

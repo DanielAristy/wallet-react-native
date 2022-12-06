@@ -12,6 +12,24 @@ const useHttp = () => {
         },
         body: JSON.stringify(payload),
       });
+
+      const json = await req.json();
+      dispatch(setClient(json));
+    } catch (err: any) {
+      console.log('Http post method err', err);
+    }
+  };
+
+  const getClient = async (email: string) => {
+    try {
+      let req = await fetch('http://192.168.1.2:3000/api/v1/client/' + email, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      });
+
       const json = await req.json();
       dispatch(setClient(json));
     } catch (err: any) {
@@ -21,6 +39,7 @@ const useHttp = () => {
 
   return {
     post,
+    getClient,
   };
 };
 

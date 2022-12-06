@@ -3,8 +3,8 @@ import { View, Text, TextInput } from 'react-native';
 import Logo from '../components/Logo';
 import Button from '../components/Button';
 import { Styles } from '../styles/Styles';
-import { useDispatch, useSelector } from 'react-redux';
-import { setLogin, setToken } from '../redux/slice/AuthSlice';
+import { useSelector } from 'react-redux';
+//import { setLogin, setToken } from '../redux/slice/AuthSlice';
 import { MyStackScreenProps } from '../interfaces/MyStackScreenProps';
 import { AuthContext } from '../context/AuthContext';
 
@@ -14,7 +14,7 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
   const { loggedIn, login } = useContext(AuthContext);
   const [confirm, setConfirm] = useState(false);
 
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const { isAuth } = useSelector((state: any) => state.auth);
 
   useEffect(() => {
@@ -32,19 +32,17 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
   }, [isAuth, navigation]);
 
   const handleLogin = () => {
-    dispatch(setToken('token123456'));
-    dispatch(setLogin());
-    setUser('');
-    setPassword('');
-    setConfirm(false);
+    // dispatch(setToken('token123456'));
+    // dispatch(setLogin());
+    // setUser('');
+    // setPassword('');
+    // setConfirm(false);
+    console.log('Logueado');
   };
   const handleContinue = () => {
     setConfirm(true);
   };
 
-  // const handleGoogle = () => {
-  //   console.log('Login con Google');
-  // };
   const handleApple = () => {
     console.log('Login con Apple');
   };
