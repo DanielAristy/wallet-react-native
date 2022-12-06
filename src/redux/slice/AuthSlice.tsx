@@ -2,7 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState = {
   token: '',
-  isAuth: false,
+  loading: false,
+  loggedIn: false,
 };
 
 const AuthSlice = createSlice({
@@ -13,11 +14,11 @@ const AuthSlice = createSlice({
       state.token = action.payload;
     },
     setLogin(state) {
-      state.isAuth = true;
+      state.loggedIn = true;
     },
     setLogout(state) {
       state.token = '';
-      state.isAuth = false;
+      state.loggedIn = false;
     },
   },
 });

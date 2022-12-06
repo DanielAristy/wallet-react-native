@@ -3,6 +3,7 @@ import SInfo from 'react-native-sensitive-info';
 import Auth0 from 'react-native-auth0';
 import jwtDecode from 'jwt-decode';
 import { Alert } from 'react-native';
+import useHttp from '../hooks/useHttp';
 
 const auth0 = new Auth0({
   domain: 'dev-8ajrvjc0lwg03ab0.us.auth0.com',
@@ -17,6 +18,7 @@ const AuthContextProvider = (props: any) => {
     picture: string;
     email: string;
   }>();
+  const { post } = useHttp();
 
   const getUserData = async (id?: string) => {
     const idToken = id ? id : await SInfo.getItem('idToken', {});
@@ -26,11 +28,7 @@ const AuthContextProvider = (props: any) => {
       throw new Error('ID token expired!');
     }
 
-    return {
-      name,
-      picture,
-      email,
-    };
+    return { name, picture, email };
   };
 
   useEffect(() => {
@@ -56,6 +54,14 @@ const AuthContextProvider = (props: any) => {
       });
       await SInfo.setItem('idToken', credentials.idToken, {});
       const user_data = await getUserData(credentials.idToken);
+
+      await post({
+        fullName: user_data.name,
+        email: user_data.email,
+        phone: '3',
+        photo: user_data.picture,
+      });
+
       setLoggedIn(true);
       setUserData(user_data);
       useLoading(true);

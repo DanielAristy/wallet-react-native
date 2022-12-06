@@ -8,9 +8,12 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { StylesComponent as Styles } from './styles/StylesComponent';
 import Avatar from './Avatar';
 import { AuthContext } from '../context/AuthContext';
+import { useSelector } from 'react-redux';
 
 const InternalMenu = ({ navigation }: DrawerContentComponentProps) => {
-  const { logout, loggedIn, userData } = useContext(AuthContext);
+  const { logout, loggedIn } = useContext(AuthContext);
+  const { client } = useSelector((state: any) => state.client);
+
   useEffect(() => {
     if (loggedIn === false) {
       navigation.navigate('Auth');
@@ -19,16 +22,16 @@ const InternalMenu = ({ navigation }: DrawerContentComponentProps) => {
 
   return (
     <DrawerContentScrollView>
-      {userData && (
+      {client && (
         <>
           <View style={Styles.containerAvatar}>
             <Avatar
               size={100}
               validUrl
-              url={userData.picture}
+              url={client.photo}
               customStyles={{ borderRadius: 50, resizeMode: 'contain' }}
             />
-            <Text style={Styles.containerAvatarText}>{userData.name}</Text>
+            <Text style={Styles.containerAvatarText}>{client.fullName}</Text>
           </View>
           <View style={Styles.containerToucheable}>
             <TouchableOpacity
