@@ -4,17 +4,14 @@ import Logo from '../components/Logo';
 import Button from '../components/Button';
 import { Styles } from '../styles/Styles';
 import { useSelector } from 'react-redux';
-//import { setLogin, setToken } from '../redux/slice/AuthSlice';
 import { MyStackScreenProps } from '../interfaces/MyStackScreenProps';
 import { AuthContext } from '../context/AuthContext';
 
 const AuthScreen = ({ navigation }: MyStackScreenProps) => {
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
-  const { loggedIn, login } = useContext(AuthContext);
+  const { loggedIn, login, logout } = useContext(AuthContext);
   const [confirm, setConfirm] = useState(false);
-
-  //const dispatch = useDispatch();
   const { isAuth } = useSelector((state: any) => state.auth);
 
   useEffect(() => {
@@ -32,34 +29,30 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
   }, [isAuth, navigation]);
 
   const handleLogin = () => {
-    // dispatch(setToken('token123456'));
-    // dispatch(setLogin());
-    // setUser('');
-    // setPassword('');
-    // setConfirm(false);
     console.log('Logueado');
   };
   const handleContinue = () => {
     setConfirm(true);
   };
-
   const handleApple = () => {
     console.log('Login con Apple');
   };
   return (
     <View style={Styles.authContainer}>
-      <Logo size={110} marginTop={100} />
-      <View style={Styles.authContainerText}>
-        <Text style={Styles.authContainerTextBlack}>MATERIAL</Text>
-        <Text style={Styles.authContainerTextPurple}>2</Text>
-        <Text style={Styles.authContainerTextBlack}>UI</Text>
+      <View style={Styles.authContainerLogo}>
+        <Logo size={100} />
+        <View style={Styles.authContainerLogoText}>
+          <Text style={Styles.authContainerLogoTextBlack}>MATERIAL</Text>
+          <Text style={Styles.authContainerLogoTextPurple}>2</Text>
+          <Text style={Styles.authContainerLogoTextBlack}>UI</Text>
+        </View>
       </View>
-      <Text style={Styles.authContainerTextLogin}>
-        Login or sign up for free
-      </Text>
-      <View>
+      <View style={Styles.authContainerInputs}>
+        <Text style={Styles.authContainerTextLogin}>
+          Login or sign up for free
+        </Text>
         {confirm ? (
-          <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+          <View>
             <TextInput
               style={Styles.input}
               underlineColorAndroid="transparent"
@@ -78,7 +71,7 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
             />
           </View>
         ) : (
-          <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+          <View>
             <TextInput
               style={Styles.input}
               underlineColorAndroid="transparent"
@@ -97,31 +90,39 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
           </View>
         )}
       </View>
-      <View
-        style={{
-          width: 270,
-          padding: 8,
-          borderColor: '#D3D3D3',
-          borderBottomWidth: 1,
-          marginBottom: 20,
-        }}
-      />
-      <View>
-        <Button
-          styleTouchable={Styles.buttonWhite}
-          styleText={Styles.textBlack}
-          title={'Sign in with Google'}
-          url
-          onPress={login}
-        />
-      </View>
-      <View style={{ marginTop: 10 }}>
-        <Button
-          styleTouchable={Styles.buttonWhite}
-          styleText={Styles.textBlack}
-          title={'Sign in with Apple'}
-          onPress={() => handleApple()}
-        />
+      <View style={Styles.authContainerButtonRegister}>
+        <View style={{ flexDirection: 'row', padding: 20 }}>
+          <View style={Styles.authContainerButtonLine} />
+          <Text style={{ color: '#D3D3D3' }}>register</Text>
+          <View style={Styles.authContainerButtonLine} />
+        </View>
+        <View>
+          <Button
+            styleTouchable={Styles.buttonWhite}
+            styleText={Styles.textBlack}
+            title={'Sign in with Google'}
+            url
+            onPress={() => {
+              login('5');
+            }}
+          />
+        </View>
+        <View style={{ marginTop: 10 }}>
+          <Button
+            styleTouchable={Styles.buttonWhite}
+            styleText={Styles.textBlack}
+            title={'Sign in with Apple'}
+            onPress={() => handleApple()}
+          />
+        </View>
+        <View style={{ marginTop: 10 }}>
+          <Button
+            styleTouchable={Styles.buttonWhite}
+            styleText={Styles.textBlack}
+            title={'Logout'}
+            onPress={logout}
+          />
+        </View>
       </View>
     </View>
   );

@@ -4,21 +4,18 @@ import { StylesComponent as Styles } from './styles/StylesComponent';
 
 interface Props {
   size?: number;
-  marginTop?: number;
 }
-const Logo = ({ size, marginTop }: Props) => {
+const Logo = ({ size }: Props) => {
   return (
     <Image
-      style={avatarStyle(size, marginTop)}
+      style={avatarStyle(size)}
       source={require('../assets/images/avatar.png')}
     />
   );
 };
 
-const avatarStyle = (size?: number, marginTop?: number) => {
-  return size
-    ? { width: size, height: size, marginTop: marginTop }
-    : Styles.logo;
+const avatarStyle = (size?: number) => {
+  return size ? { width: size, height: size } : Styles.logo;
 };
 
 export default Logo;

@@ -21,7 +21,7 @@ const InternalMenu = ({ navigation }: DrawerContentComponentProps) => {
   }, [loggedIn]);
 
   return (
-    <DrawerContentScrollView>
+    <DrawerContentScrollView style={{ height: '100%' }}>
       {client && (
         <>
           <View style={Styles.containerAvatar}>

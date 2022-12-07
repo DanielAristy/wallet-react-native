@@ -32,6 +32,7 @@ const useHttp = () => {
 
       const json = await req.json();
       dispatch(setClient(json));
+      return json;
     } catch (err: any) {
       console.log('Http post method err', err);
     }

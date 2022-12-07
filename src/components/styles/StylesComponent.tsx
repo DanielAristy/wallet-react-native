@@ -76,7 +76,6 @@ export const StylesComponent = StyleSheet.create({
     letterSpacing: 0.7,
   },
   containerAvatarFooter: {
-    height: 200,
     margin: 20,
     alignItems: 'center',
     justifyContent: 'flex-end',

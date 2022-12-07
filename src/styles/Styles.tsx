@@ -1,11 +1,20 @@
 import { StyleSheet } from 'react-native';
 
 export const Styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  welcomeContainer: {
+    height: '100%',
+  },
+  welcomeContainerAvatar: {
+    height: '60%',
+    paddingBottom: '10%',
     backgroundColor: '#fff',
     alignItems: 'center',
-    paddingTop: '80%',
+    justifyContent: 'flex-end',
+  },
+  welcomeContainerText: {
+    height: '40%',
+    alignItems: 'center',
+    backgroundColor: '#fff',
   },
   textWelcome: {
     padding: 20,
@@ -15,41 +24,64 @@ export const Styles = StyleSheet.create({
   },
 
   authContainer: {
-    flex: 1,
+    height: '100%',
     alignItems: 'center',
     backgroundColor: '#fff',
   },
-
-  authContainerText: {
+  authContainerLogo: {
+    alignItems: 'center',
+    height: '33.3%',
+    width: '100%',
+    justifyContent: 'flex-end',
+    paddingBottom: 10,
+  },
+  authContainerLogoText: {
     flexDirection: 'row',
   },
 
-  authContainerTextBlack: {
+  authContainerLogoTextBlack: {
     color: '#000',
     fontWeight: 'bold',
     fontSize: 22,
     letterSpacing: 2,
     marginRight: 10,
   },
-  authContainerTextPurple: {
+  authContainerLogoTextPurple: {
     fontWeight: 'bold',
     fontSize: 22,
     letterSpacing: 2,
     marginRight: 10,
     color: 'purple',
   },
+  authContainerInputs: {
+    height: '33.3%',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
   input: {
     height: 40,
     width: 300,
-    margin: 12,
+    paddingTop: 10,
     borderWidth: 1,
     padding: 10,
     borderRadius: 5,
-    marginTop: 80,
   },
   authContainerTextLogin: {
-    marginTop: 120,
     color: 'black',
+    marginBottom: 15,
+  },
+  authContainerButtonLine: {
+    width: 100,
+    padding: 8,
+    borderColor: '#D3D3D3',
+    borderBottomWidth: 1,
+  },
+  authContainerButtonRegister: {
+    height: '33.3%',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   buttonBlue: {
     height: 40,

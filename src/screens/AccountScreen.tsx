@@ -4,8 +4,10 @@ import { FlatList } from 'react-native-gesture-handler';
 import BalanceItem from '../components/BalanceItem';
 import { Styles } from '../styles/Styles';
 import { MyStackScreenProps } from '../interfaces/MyStackScreenProps';
+import { useSelector } from 'react-redux';
 
 const AccountScreen = ({ navigation }: MyStackScreenProps) => {
+  const { client } = useSelector((state: any) => state.client);
   useEffect(() => {
     const backAction = () => {
       if (navigation.isFocused()) {
@@ -94,7 +96,7 @@ const AccountScreen = ({ navigation }: MyStackScreenProps) => {
           <Text
             style={
               Styles.accountScreenContainerBalanceValue
-            }>{`$ ${balance}`}</Text>
+            }>{`$ ${client.account.balance}`}</Text>
           <Text style={Styles.accountScreenContainerBalanceText}>
             Balance in your account
           </Text>

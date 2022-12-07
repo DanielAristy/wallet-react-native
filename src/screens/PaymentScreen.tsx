@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, BackHandler, Alert, TextInput } from 'react-native';
+import { View, Text, BackHandler, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Button from '../components/Button';
 import { MyStackScreenProps } from '../interfaces/MyStackScreenProps';
 import { Styles } from '../styles/Styles';
+import { useSelector } from 'react-redux';
 
 const PaymentScreen = ({ navigation }: MyStackScreenProps) => {
+  const [user, setUser] = useState('');
   const [amount, setAmount] = useState('');
   const [reason, setReason] = useState('');
+  const { client } = useSelector((state: any) => state.client);
   useEffect(() => {
     const backAction = () => {
       if (navigation.isFocused()) {
@@ -40,7 +43,7 @@ const PaymentScreen = ({ navigation }: MyStackScreenProps) => {
           <Icon name="currency-usd" size={40} color={'#000'} />
         </View>
         <View style={{ flexDirection: 'column', alignItems: 'center' }}>
-          <Text style={{ color: '#000', fontSize: 40 }}>50.000.000.000</Text>
+          <Text style={{ color: '#000', fontSize: 40 }}>{client.account.balance}</Text>
           <Text style={{ color: '#000', fontSize: 15 }}>Account Balance</Text>
         </View>
       </View>
@@ -52,10 +55,9 @@ const PaymentScreen = ({ navigation }: MyStackScreenProps) => {
           style={Styles.changePasswordTextInput}
           placeholderTextColor="#000"
           placeholder={"User's email or phone number"}
-          onChangeText={setAmount}
-          value={amount}
-          secureTextEntry={true}
-          keyboardType="visible-password"
+          onChangeText={setUser}
+          value={user}
+          keyboardType="email-address"
         />
       </View>
       <View style={{ flexDirection: 'row' }}>
@@ -66,9 +68,8 @@ const PaymentScreen = ({ navigation }: MyStackScreenProps) => {
           style={Styles.changePasswordTextInput}
           placeholderTextColor="#000"
           placeholder={'Amount'}
-          onChangeText={setReason}
-          value={reason}
-          secureTextEntry={true}
+          onChangeText={setAmount}
+          value={amount}
           keyboardType="visible-password"
         />
       </View>
@@ -82,14 +83,13 @@ const PaymentScreen = ({ navigation }: MyStackScreenProps) => {
           placeholder={'Reason'}
           onChangeText={setReason}
           value={reason}
-          secureTextEntry={true}
-          keyboardType="visible-password"
+          keyboardType="default"
         />
       </View>
       <Button
         styleTouchable={Styles.buttonBlue}
         styleText={Styles.text}
-        title={'Apply for loan'}
+        title={'Send payment'}
         login
         onPress={sendPayment}
       />

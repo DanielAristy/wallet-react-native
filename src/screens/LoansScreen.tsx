@@ -4,10 +4,12 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Button from '../components/Button';
 import { MyStackScreenProps } from '../interfaces/MyStackScreenProps';
 import { Styles } from '../styles/Styles';
+import { useSelector } from 'react-redux';
 
 const LoansScreen = ({ navigation }: MyStackScreenProps) => {
   const [amount, setAmount] = useState('');
   const [reason, setReason] = useState('');
+  const { client } = useSelector((state: any) => state.client);
   useEffect(() => {
     const backAction = () => {
       if (navigation.isFocused()) {
@@ -42,7 +44,9 @@ const LoansScreen = ({ navigation }: MyStackScreenProps) => {
         <View style={{ marginTop: 20 }}>
           <Icon name="currency-eur" size={25} color={'#000'} />
         </View>
-        <Text style={{ color: '#000', fontSize: 40 }}>50.000.000.000</Text>
+        <Text style={{ color: '#000', fontSize: 40 }}>
+          {client.account.credit}
+        </Text>
       </View>
       <View style={{ flexDirection: 'row' }}>
         <View style={{ marginTop: 20 }}>
