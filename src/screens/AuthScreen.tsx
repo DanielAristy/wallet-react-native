@@ -13,6 +13,9 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
   const { loggedIn, login, logout } = useContext(AuthContext);
   const [confirm, setConfirm] = useState(false);
   const { isAuth } = useSelector((state: any) => state.auth);
+  const [validNumber, setValidNumber] = useState(false);
+  const [validAuth, setValidAuth] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   useEffect(() => {
     if (loggedIn) {
@@ -28,8 +31,12 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
     }
   }, [isAuth, navigation]);
 
+  const handlePhoneLogin = () => {
+    setValidNumber(false);
+    setValidAuth(true);
+  };
   const handleLogin = () => {
-    console.log('Logueado');
+    console.log('Loging with user and password');
   };
   const handleContinue = () => {
     setConfirm(true);
@@ -37,6 +44,23 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
   const handleApple = () => {
     console.log('Login con Apple');
   };
+
+  const handleLoginAuth0 = () => {
+    setConfirm(false);
+    setValidNumber(true);
+  };
+
+  useEffect(() => {
+    const auth = async (number: string) => {
+      await login(number);
+    };
+    if (validAuth) {
+      auth(phoneNumber);
+      setPhoneNumber('');
+      setValidAuth(false);
+    }
+  }, [validAuth, phoneNumber]);
+
   return (
     <View style={Styles.authContainer}>
       <View style={Styles.authContainerLogo}>
@@ -48,10 +72,35 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
         </View>
       </View>
       <View style={Styles.authContainerInputs}>
-        <Text style={Styles.authContainerTextLogin}>
-          Login or sign up for free
-        </Text>
-        {confirm ? (
+        {!validNumber && (
+          <Text style={Styles.authContainerTextLogin}>
+            Login or sign up for free
+          </Text>
+        )}
+        {validNumber ? (
+          <>
+            <Text style={Styles.authContainerTextLogin}>
+              Phone number before pressing the continue button
+            </Text>
+            <View>
+              <TextInput
+                style={Styles.input}
+                underlineColorAndroid="transparent"
+                placeholder={'Phone number'}
+                onChangeText={setPhoneNumber}
+                value={phoneNumber}
+                keyboardType="number-pad"
+              />
+              <Button
+                styleTouchable={Styles.buttonBlue}
+                styleText={Styles.text}
+                title={'Continue'}
+                login
+                onPress={handlePhoneLogin}
+              />
+            </View>
+          </>
+        ) : confirm ? (
           <View>
             <TextInput
               style={Styles.input}
@@ -102,9 +151,7 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
             styleText={Styles.textBlack}
             title={'Sign in with Google'}
             url
-            onPress={() => {
-              login('5');
-            }}
+            onPress={handleLoginAuth0}
           />
         </View>
         <View style={{ marginTop: 10 }}>
@@ -115,14 +162,14 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
             onPress={() => handleApple()}
           />
         </View>
-        <View style={{ marginTop: 10 }}>
+        {/* <View style={{ marginTop: 10 }}>
           <Button
             styleTouchable={Styles.buttonWhite}
             styleText={Styles.textBlack}
             title={'Logout'}
             onPress={logout}
           />
-        </View>
+        </View> */}
       </View>
     </View>
   );

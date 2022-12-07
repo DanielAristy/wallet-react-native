@@ -14,18 +14,18 @@ const AuthContextProvider = (props: any) => {
   const [loggedIn, setLoggedIn] = useState<boolean>();
   const { post, getClient } = useHttp();
 
-  const getUserData = async (id?: string, number?:string) => {
+  const getUserData = async (id?: string, number?: string) => {
     const idToken = id ? id : await SInfo.getItem('idToken', {});
     const { name, picture, email, exp } = jwtDecode<any>(idToken);
 
     const clientData = await getClient(email);
 
-    if (!clientData || clientData.statusCode === 404) {
+    if (!clientData) {
       console.log('Entro a crear el client');
       await post({
         fullName: name,
         email: email,
-        phone: '2',
+        phone: number ?? '0',
         photo: picture,
       });
     }
@@ -36,8 +36,6 @@ const AuthContextProvider = (props: any) => {
   };
 
   const login = async (number: string) => {
-    console.log(number);
-
     try {
       const credentials = await auth0.webAuth.authorize({
         scope: 'openid email profile',
