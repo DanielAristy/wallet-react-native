@@ -21,11 +21,10 @@ const AuthContextProvider = (props: any) => {
     const clientData = await getClient(email);
 
     if (!clientData) {
-      console.log('Entro a crear el client');
       await post({
         fullName: name,
         email: email,
-        phone: number ?? '0',
+        phone: number,
         photo: picture,
       });
     }

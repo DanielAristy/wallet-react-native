@@ -5,9 +5,12 @@ import BalanceItem from '../components/BalanceItem';
 import { Styles } from '../styles/Styles';
 import { MyStackScreenProps } from '../interfaces/MyStackScreenProps';
 import { useSelector } from 'react-redux';
+import useHttp from '../hooks/useHttp';
 
 const AccountScreen = ({ navigation }: MyStackScreenProps) => {
   const { client } = useSelector((state: any) => state.client);
+  const { getAccountById } = useHttp();
+
   useEffect(() => {
     const backAction = () => {
       if (navigation.isFocused()) {
@@ -25,70 +28,15 @@ const AccountScreen = ({ navigation }: MyStackScreenProps) => {
     return () => backHandler.remove();
   }, [navigation]);
 
-  const [balance, setBalance] = useState('642.467.600');
-  const list = [
-    {
-      nameIcon: 'cog-outline',
-      detail: 'Semestre Universidad',
-      date: new Date().toISOString(),
-      value: 150000,
-    },
+  useEffect(() => {
+    const getAccount = async (id: string) => {
+      await getAccountById(id);
+    };
+    if (client) {
+      getAccount(client.account.id);
+    }
+  });
 
-    {
-      nameIcon: 'cog-outline',
-      detail: 'Pago Nomina',
-      date: new Date().toISOString(),
-      value: 3000000,
-    },
-    {
-      nameIcon: 'cog-outline',
-      detail: 'Pago Nomina',
-      date: new Date().toISOString(),
-      value: 3000000,
-    },
-    {
-      nameIcon: 'cog-outline',
-      detail: 'Pago Nomina',
-      date: new Date().toISOString(),
-      value: 3000000,
-    },
-    {
-      nameIcon: 'cog-outline',
-      detail: 'Pago Nomina',
-      date: new Date().toISOString(),
-      value: 3000000,
-    },
-    {
-      nameIcon: 'cog-outline',
-      detail: 'Pago Nomina',
-      date: new Date().toISOString(),
-      value: 3000000,
-    },
-    {
-      nameIcon: 'cog-outline',
-      detail: 'Pago Nomina',
-      date: new Date().toISOString(),
-      value: 3000000,
-    },
-    {
-      nameIcon: 'cog-outline',
-      detail: 'Pago Nomina',
-      date: new Date().toISOString(),
-      value: 3000000,
-    },
-    {
-      nameIcon: 'cog-outline',
-      detail: 'Pago Nomina',
-      date: new Date().toISOString(),
-      value: 3000000,
-    },
-    {
-      nameIcon: 'cog-outline',
-      detail: 'Pago Nomina',
-      date: new Date().toISOString(),
-      value: 3000000,
-    },
-  ];
   return (
     <View style={Styles.accountScreenContainer}>
       <View style={Styles.accountScreenContainerAccout}>
@@ -103,17 +51,18 @@ const AccountScreen = ({ navigation }: MyStackScreenProps) => {
         </View>
       </View>
       <View style={Styles.accountScreenContainerFlatList}>
-        <FlatList
-          data={list}
-          renderItem={({ item }) => (
-            <BalanceItem
-              nameIcon={item.nameIcon}
-              detail={item.detail}
-              date={item.date}
-              value={item.value}
-            />
-          )}
-        />
+        {client.account.movements && (
+          <FlatList
+            data={client.account.movements}
+            renderItem={({ item }) => (
+              <BalanceItem
+                detail={item.reason}
+                date={item.date}
+                value={item.amount}
+              />
+            )}
+          />
+        )}
       </View>
     </View>
   );

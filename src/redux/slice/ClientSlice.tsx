@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ClientI } from '../interfaces/Client';
+import { AccountI } from '../interfaces/Account';
 
 const initialState: ClientI = {
   id: '',
@@ -40,8 +41,11 @@ const ClientSlice = createSlice({
     setClient(state, action: PayloadAction<ClientI>) {
       state.client = action.payload;
     },
+    setAccount(state, action: PayloadAction<AccountI>) {
+      state.client.account = action.payload;
+    },
   },
 });
 
-export const { setClient } = ClientSlice.actions;
+export const { setClient, setAccount } = ClientSlice.actions;
 export default ClientSlice.reducer;

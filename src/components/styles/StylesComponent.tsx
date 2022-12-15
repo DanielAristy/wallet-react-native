@@ -26,9 +26,9 @@ export const StylesComponent = StyleSheet.create({
   },
   containerMovement: {
     flexDirection: 'row',
+    width: '100%',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
-    margin: 5,
+    padding: 8,
   },
   detailText: {
     color: '#000',
@@ -39,7 +39,7 @@ export const StylesComponent = StyleSheet.create({
     fontSize: 15,
   },
   valueText: {
-    color: 'red',
+    color: 'green',
     fontSize: 20,
   },
 

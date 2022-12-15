@@ -162,14 +162,14 @@ const AuthScreen = ({ navigation }: MyStackScreenProps) => {
             onPress={() => handleApple()}
           />
         </View>
-        {/* <View style={{ marginTop: 10 }}>
+        <View style={{ marginTop: 10 }}>
           <Button
             styleTouchable={Styles.buttonWhite}
             styleText={Styles.textBlack}
             title={'Logout'}
             onPress={logout}
           />
-        </View> */}
+        </View>
       </View>
     </View>
   );
