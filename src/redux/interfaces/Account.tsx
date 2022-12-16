@@ -8,6 +8,5 @@ export interface AccountI {
     createdAt: Date | null;
     updatedAt: Date | null;
     deletedAt: Date | null;
-    movementsIncome: MovementI[];
-    movementsOutcome: MovementI[];
+    movements: MovementI[];
 }

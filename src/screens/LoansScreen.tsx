@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { BackHandler, Text, TextInput, View } from 'react-native';
+import {
+  BackHandler,
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Button from '../components/Button';
 import { MyStackScreenProps } from '../interfaces/MyStackScreenProps';
 import { Styles } from '../styles/Styles';
 import { useSelector } from 'react-redux';
+import useHttp from '../hooks/useHttp';
 
 const LoansScreen = ({ navigation }: MyStackScreenProps) => {
   const [amount, setAmount] = useState('');
   const [reason, setReason] = useState('');
   const { client } = useSelector((state: any) => state.client);
+  const { makeLoan, getAccountById } = useHttp();
   useEffect(() => {
     const backAction = () => {
       if (navigation.isFocused()) {
@@ -27,7 +35,18 @@ const LoansScreen = ({ navigation }: MyStackScreenProps) => {
     return () => backHandler.remove();
   }, [navigation]);
 
-  const applyLoan = () => {};
+  const applyLoan = async () => {
+    await makeLoan({
+      idIncome: client.account.id,
+      idOutcome: client.account.id,
+      reason: reason,
+      amount: amount,
+    });
+
+    await getAccountById(client.account.id);
+    setAmount('');
+    setReason('');
+  };
   return (
     <View
       style={{
@@ -58,8 +77,7 @@ const LoansScreen = ({ navigation }: MyStackScreenProps) => {
           placeholder={'Amount'}
           onChangeText={setAmount}
           value={amount}
-          secureTextEntry={true}
-          keyboardType="visible-password"
+          keyboardType="number-pad"
         />
       </View>
       <View style={{ flexDirection: 'row' }}>
@@ -76,13 +94,14 @@ const LoansScreen = ({ navigation }: MyStackScreenProps) => {
           keyboardType="visible-password"
         />
       </View>
-      <Button
-        styleTouchable={Styles.buttonBlue}
-        styleText={Styles.text}
-        title={'Apply for loan'}
-        login
+      <TouchableOpacity
+        style={
+          client.account.credit === '0' ? Styles.buttonGray : Styles.buttonBlue
+        }
         onPress={applyLoan}
-      />
+        disabled={client.account.credit === '0' ? true : false}>
+        <Text style={Styles.text}>Apply for loan</Text>
+      </TouchableOpacity>
     </View>
   );
 };

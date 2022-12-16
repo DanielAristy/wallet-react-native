@@ -91,6 +91,14 @@ export const Styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
   },
+  buttonGray: {
+    height: 40,
+    width: 300,
+    backgroundColor: 'gray',
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 20,
+  },
   buttonWhite: {
     height: 40,
     width: 300,

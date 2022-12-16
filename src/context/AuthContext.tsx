@@ -19,8 +19,8 @@ const AuthContextProvider = (props: any) => {
     const { name, picture, email, exp } = jwtDecode<any>(idToken);
 
     const clientData = await getClient(email);
-
-    if (!clientData) {
+    
+    if (!clientData || clientData.statusCode === 404) {
       await post({
         fullName: name,
         email: email,

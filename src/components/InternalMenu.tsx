@@ -34,12 +34,12 @@ const InternalMenu = ({ navigation }: DrawerContentComponentProps) => {
             <Text style={Styles.containerAvatarText}>{client.fullName}</Text>
           </View>
           <View style={Styles.containerToucheable}>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={Styles.containerButton}
               onPress={() => navigation.navigate('ChangePassword')}>
               <Icon name="cog-outline" size={25} />
               <Text style={Styles.containerButtonText}>Cambiar Contraseña</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity
               style={Styles.containerButton}
               onPress={() => navigation.navigate('SettingThemeApp')}>

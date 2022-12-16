@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ClientI } from '../interfaces/Client';
 import { AccountI } from '../interfaces/Account';
+import { MovementI } from '../interfaces/MovementI';
 
 const initialState: ClientI = {
   id: '',
@@ -20,8 +21,7 @@ const initialState: ClientI = {
     createdAt: new Date(),
     updatedAt: null,
     deletedAt: null,
-    movementsIncome: [],
-    movementsOutcome: [],
+    movements: [],
   },
   app: {
     id: '',
@@ -44,8 +44,11 @@ const ClientSlice = createSlice({
     setAccount(state, action: PayloadAction<AccountI>) {
       state.client.account = action.payload;
     },
+    setMovements(state, action: PayloadAction<MovementI>) {
+      state.client.account.movements.push(action.payload);
+    },
   },
 });
 
-export const { setClient, setAccount } = ClientSlice.actions;
+export const { setClient, setAccount, setMovements } = ClientSlice.actions;
 export default ClientSlice.reducer;
